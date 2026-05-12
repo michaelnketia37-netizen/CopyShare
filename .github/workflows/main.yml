@@ -1,0 +1,50 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Unzip project files
+        run: |
+          unzip -q CopyShare_Phase5_Integrated.zip -d extracted/
+          ls -la extracted/
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Make gradlew executable
+        run: chmod +x extracted/gradlew
+
+      - name: Build APK
+        run: |
+          cd extracted/
+          ./gradlew assembleRelease
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk-builds
+          path: extracted/app/build/outputs/apk/release/*.apk
+          retention-days: 7
+
+      - name: List build outputs
+        run: |
+          echo "Build completed. Output files:"
+          find extracted/app/build/outputs -name "*.apk" -o -name "*.aab" 2>/dev/null | head -20
