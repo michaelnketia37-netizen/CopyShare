@@ -23,8 +23,21 @@ jobs:
 
       - name: Unzip project files
         run: |
+          if [ ! -f "CopyShare_Phase5_Integrated.zip" ]; then
+            echo "ERROR: CopyShare_Phase5_Integrated.zip not found"
+            exit 1
+          fi
           unzip -q CopyShare_Phase5_Integrated.zip -d extracted/
+          echo "Extraction completed. Directory contents:"
           ls -la extracted/
+          # Verify gradlew exists
+          if [ ! -f "extracted/gradlew" ]; then
+            echo "ERROR: gradlew not found in extracted directory"
+            echo "Searching for gradlew:"
+            find extracted -name "gradlew" -o -name "*.gradle*" | head -20
+            exit 1
+          fi
+          echo "gradlew found successfully"
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
