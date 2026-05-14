@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ── Backgrounds ─────────────────────────────────────────────────── -->
+    <color name="bg_primary">#0D1117</color>
+    <color name="bg_header">#161B22</color>
+    <color name="bg_card">#1C2330</color>
+    <color name="bg_card_received">#0D2818</color>
+    <color name="bg_edittext">#0D1117</color>
+    <color name="bg_log">#080D12</color>
+
+    <!-- ── Text ────────────────────────────────────────────────────────── -->
+    <color name="text_primary">#E6EDF3</color>
+    <color name="text_secondary">#7D8590</color>
+    <color name="text_hint">#484F58</color>
+    <color name="text_log">#58A6FF</color>
+
+    <!-- ── Accent ───────────────────────────────────────────────────────── -->
+    <color name="accent">#58A6FF</color>
+    <color name="accent_green">#3FB950</color>
+    <color name="divider">#21262D</color>
+
+    <!-- ── Status indicators ────────────────────────────────────────────── -->
+    <color name="status_off">#6E7681</color>
+    <color name="status_listening">#D29922</color>
+    <color name="status_connecting">#58A6FF</color>
+    <color name="status_connected">#3FB950</color>
+
+    <!-- ── Buttons ──────────────────────────────────────────────────────── -->
+    <color name="btn_secondary">#21262D</color>
+    <color name="btn_danger">#6E3B3B</color>
+    <color name="btn_connect">#1F4068</color>
+    <color name="btn_send">#1A4731</color>
+
+    <!-- Required by Material / AppCompat -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

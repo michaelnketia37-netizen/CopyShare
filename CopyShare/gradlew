@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Find the directory where this script is located
+DIR=$(dirname "$0")
+
+# Execute the gradle-wrapper.jar
+java -Xmx2g -Dorg.gradle.daemon=false -jar "$DIR/gradle/wrapper/gradle-wrapper.jar" "$@"

@@ -1,0 +1,5 @@
+<resources>
+    <color name="code_bg">#0B0F14</color>
+    <color name="code_surface">#131920</color>
+    <color name="code_accent">#7C5CFC</color>
+</resources>

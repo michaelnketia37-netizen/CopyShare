@@ -1,0 +1,12 @@
+{
+  "phase": 5,
+  "features": [
+    "real_file_storage",
+    "workspace_persistence",
+    "search_in_files",
+    "zip_import_export",
+    "undo_redo",
+    "editor_sessions",
+    "syntax_highlighting"
+  ]
+}

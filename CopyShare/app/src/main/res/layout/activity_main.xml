@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- ══ Header ══════════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg_header"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CopyShare"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:fontFamily="monospace" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text Transfer via Bluetooth"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="2dp" />
+
+            <!-- Status pill -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● Bluetooth Off"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                tools:textColor="@color/status_listening" />
+
+        </LinearLayout>
+
+        <!-- ══ SEND Card ═══════════════════════════════════════════════════ -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEND TEXT"
+                    android:textSize="11sp"
+                    android:textColor="@color/accent"
+                    android:letterSpacing="0.15"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace" />
+
+                <!-- EditText for the text to send -->
+                <EditText
+                    android:id="@+id/etText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="4"
+                    android:maxLines="10"
+                    android:gravity="top|start"
+                    android:hint="Paste or type text to send…"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:background="@color/bg_edittext"
+                    android:padding="12dp"
+                    android:layout_marginTop="12dp"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:fontFamily="monospace"
+                    android:textSize="14sp" />
+
+                <!-- Paste / Clear row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPaste"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="📋 Paste"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/btn_secondary"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClear"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="✕ Clear"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/btn_danger"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp" />
+
+                <!-- Connect / Send row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConnect"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="🔵 Connect"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/btn_connect"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSend"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="▶ Send"
+                        android:textSize="14sp"
+                        android:enabled="false"
+                        app:backgroundTint="@color/btn_send"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- Send progress bar -->
+                <ProgressBar
+                    android:id="@+id/progressSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:progressTint="@color/accent" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ══ RECEIVED Card (hidden until a file arrives) ═════════════════ -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardReceived"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/bg_card_received"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RECEIVED TEXT"
+                    android:textSize="11sp"
+                    android:textColor="@color/accent_green"
+                    android:letterSpacing="0.15"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace" />
+
+                <TextView
+                    android:id="@+id/tvReceivedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_edittext"
+                    android:padding="12dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:maxLines="8"
+                    tools:text="Sample received text will appear here." />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCopyReceived"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:text="📋 Copy to Clipboard &amp; Paste"
+                    android:textSize="14sp"
+                    app:backgroundTint="@color/accent_green"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ══ Log Card ════════════════════════════════════════════════════ -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="LOG"
+                        android:textSize="11sp"
+                        android:textColor="@color/text_secondary"
+                        android:letterSpacing="0.15"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/btnClearLog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:padding="4dp" />
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/scrollLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/bg_log">
+
+                    <TextView
+                        android:id="@+id/tvLog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/text_log"
+                        android:textSize="12sp"
+                        android:fontFamily="monospace"
+                        android:lineSpacingExtra="3dp"
+                        tools:text="[00:00:00] Listening for connections…" />
+
+                </ScrollView>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ══ How It Works Card ═══════════════════════════════════════════ -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HOW IT WORKS"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:letterSpacing="0.15"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="① Both devices open CopyShare (app auto-listens)\n② Sender taps Connect → picks the paired receiver device\n③ Sender pastes text → taps Send\n④ App saves text to a temp .txt file and transfers it over Bluetooth\n⑤ Receiver device unwraps the file → text is auto-copied to clipboard\n⑥ Receiver taps Paste in any app" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

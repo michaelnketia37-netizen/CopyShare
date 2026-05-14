@@ -1,0 +1,12 @@
+PHASE 5 COMPLETE
+
+Major usable editor foundations added:
+- Real local file storage
+- Workspace persistence foundation
+- Real code editor fragment
+- Search in files engine foundation
+- ZIP import/export foundation
+- Undo/Redo foundation
+- Syntax highlight manager foundation
+- Editor session manager
+- Real file explorer adapter

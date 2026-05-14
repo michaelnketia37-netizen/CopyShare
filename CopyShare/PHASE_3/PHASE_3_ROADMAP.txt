@@ -1,0 +1,14 @@
+COPYSHARE PHASE 3 ROADMAP
+
+Upcoming IDE Features:
+- Nested folders
+- HTML preview
+- XML live preview
+- Code completion
+- Git integration
+- Terminal emulator
+- APK project templates
+- Split screen editing
+- AI assistant architecture
+- Advanced search indexing
+- Project workspace persistence
