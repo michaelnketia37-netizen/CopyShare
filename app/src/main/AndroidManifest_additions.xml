@@ -1,0 +1,24 @@
+<!-- Add these permissions to your AndroidManifest.xml inside the <manifest> tag -->
+
+<!-- Required for reading external storage (Android 12 and below) -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+<!-- Required for Android 13+ scoped storage -->
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+<!-- Optional: For accessing file metadata location info -->
+<uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
+<!-- Add this inside <application> tag for FileProvider -->
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+</provider>
