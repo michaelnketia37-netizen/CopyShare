@@ -1,0 +1,38 @@
+name: Build CopyShare
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Unzip CopyShare
+      run: |
+        unzip CopyShare_Fixed\ \(1\).zip -d CopyShare  # Adjust the ZIP file name if necessary
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'  # Change this to the version required by your project
+
+    - name: Build with Gradle
+      run: ./gradlew build  # Ensure this command is correct for your project
+
+    - name: Run tests
+      run: ./gradlew test  # Optional: add this step if you have tests
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: build/libs  # Adjust this path based on your build output
